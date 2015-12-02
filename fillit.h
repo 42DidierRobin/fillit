@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/02 12:41:23 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/02 13:26:31 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef struct	s_point
+{
+	char		x;
+	char		y;
+}				t_point;
+
 typedef struct	s_tris
 {
 	char		name;
-	char		x;
-	char		y;
+	t_point		coord[4];
 }				t_tris;
 
 typedef struct	s_conf
@@ -30,5 +35,4 @@ typedef struct	s_conf
 	s_tris		**piece;
 	char		nbr_piece;
 }				t_conf;
-
 #endif
