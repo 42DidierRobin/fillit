@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:45:59 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/02 18:08:13 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 11:16:23 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ int			main()
 	start->x = 0;
 	start->y = 0;
 	ft_putstr("doit etre 1 : ");
+	ft_putnbr(ft_is_start(grid, start));
+	ft_putstr("\n");
+	start->x = 0;
+	start->y = 1;
+	ft_putstr("doit etre 0 : ");
 	ft_putnbr(ft_is_start(grid, start));
 	ft_putstr("\n");
 	start->x = 3;

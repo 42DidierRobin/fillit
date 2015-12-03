@@ -6,12 +6,16 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:29:16 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/02 18:08:01 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 11:16:21 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
+
+//-----
+#include "stdio.h"
+//-----
 
 // Renvoi 1 si le point est un point de start (= un point adjacent (meme en diagonal) a une case remplie), 0 sinon
 int				ft_is_start(char **grid, t_point *point)
@@ -19,6 +23,8 @@ int				ft_is_start(char **grid, t_point *point)
 	int		i;
 	int		j;
 
+	if (grid[(int)point->y][(int)point->x] != '.')
+		return (0);
 	i = -1;
 	while (i < 2)
 	{
@@ -46,8 +52,8 @@ t_point		**ft_give_starts(char **grid)
 	t_point		**ret;
 
 	ret = &starts;
+	
 	max = ft_find_len(grid) + 1;
-	ft_putnbr(max);
 	i = 0;
 	while (max - i)
 	{
@@ -55,12 +61,19 @@ t_point		**ft_give_starts(char **grid)
 		while (max - j)
 		{
 			tmp = (t_point*)malloc(sizeof(t_point));
-			tmp->x = i;
-			tmp->y = j;
+			tmp->x = j;
+			tmp->y = i;
 			tmp->next = NULL;
 			if (ft_is_start(grid, tmp))
 			{
 				starts = tmp;
+				//--
+				ft_putstr("on a trouve un point : ");
+				ft_putnbr(starts->x);
+				ft_putstr(";");
+				ft_putnbr(starts->y);
+				ft_putchar('\n');
+				//--
 				starts = starts->next;
 			}
 			free(tmp);
@@ -68,6 +81,7 @@ t_point		**ft_give_starts(char **grid)
 		}
 		i++;
 	}
+
 	return (ret);
 }
 
