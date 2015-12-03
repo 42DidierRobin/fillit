@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:48:16 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/02 17:38:23 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/03 11:49:30 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ char	check_tris(t_tris *tris)
 	{
 		if (coord[i].x < 0 || coord[i].x > 4 || coord[i].y < 0 || coord[i].y > 4)
 			return (0);
+		if (ckeck_tris_form(tris) == 0)
+			return (0);
 	}
 	return (1);
+}
+
+char	check_tris_form(t_tris *tris)
+{
+
 }
