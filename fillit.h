@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/03 16:25:18 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 16:41:44 by rdidier          ###   ########.fr       */
 /*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -47,7 +47,6 @@ char				create_tris(char *str, char name);
 void				create_tris_coord(t_tris *tris, int nbr, int i);
 char				check_tris(t_tris *tris);
 t_tris				*init_tris(char name);
-#endif
 
 //imprime une grille.
 void		ft_print_grid(char **tab);
@@ -78,3 +77,5 @@ t_point		*ft_new_element(short i, short j);
 void		ft_add_list(t_point *list, t_point *element);
 
 void		ft_print_list(t_point *lst);
+
+#endif
