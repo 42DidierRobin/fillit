@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/03 11:16:29 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 16:25:18 by rdidier          ###   ########.fr       */
 /*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,8 +22,8 @@
 
 typedef struct		s_point
 {
-	char			x;
-	char			y;
+	short			x;
+	short			y;
 	struct s_point	*next;
 }					t_point;
 
@@ -53,23 +53,28 @@ t_tris				*init_tris(char name);
 void		ft_print_grid(char **tab);
 
 //initialise une grille fraiche remplie de '.' de taille 4*nb piece
-char		**ft_new_grid(int nb_piece);
+char		**ft_new_grid(short nb_piece);
 
 //place une piece a start dans la grille si possible
-int			ft_put_piece(char **grid, t_point *start, t_tris *piece);
+short		ft_put_piece(char **grid, t_point *start, t_tris *piece);
 
 //Verifi que piece peut etre place dans grille a start
-int			ft_is_putable(char **grid, t_point *start, t_tris *piece);
+short		ft_is_putable(char **grid, t_point *start, t_tris *piece);
 
 //Renvoi la taille du pls grand carre rempli dans la grille sans '.'
-int			ft_find_len(char **grid);
+short		ft_find_len(char **grid);
 
 //Copi une grille de taille len a partir de la grille envoyee cette fonction segfault quand lenvie lui en prend.
-char		**ft_copy_grid(char **grid, int len);
+char		**ft_copy_grid(char **grid, short len);
 
 //Dit si un point est un start ou pas
-int			ft_is_start(char **grid, t_point *point);
+int			ft_is_start(char **grid, short x, short y);
 
 //Renvoi la liste des starts de la grille
-t_point		**ft_give_starts(char **grid);
+t_point		*ft_give_starts(char **grid);
 
+t_point		*ft_new_element(short i, short j);
+
+void		ft_add_list(t_point *list, t_point *element);
+
+void		ft_print_list(t_point *lst);
