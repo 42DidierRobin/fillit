@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:48:16 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/03 11:49:30 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/03 14:59:59 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,38 @@ char	check_tris(t_tris *tris)
 	{
 		if (coord[i].x < 0 || coord[i].x > 4 || coord[i].y < 0 || coord[i].y > 4)
 			return (0);
-		if (ckeck_tris_form(tris) == 0)
-			return (0);
 	}
+	if (check_tris_form(tris) == 0)
+		return (0);
 	return (1);
 }
 
+//controle si la piece a la bonne forme. Pour le faire, je regarde la premier point, puis je dois trouver le point suivant en x + 1 ou y + 1. et ca pour les trois premier point
 char	check_tris_form(t_tris *tris)
 {
+	int		i;
+	t_point	*coord;
+	int		y;
+	char	ret;
 
+	ret = 0;
+	coord = tris->coord;
+	i = 0;
+	while (i < 3)
+	{
+		y = 0;
+		ret = 0;
+		while (y < 4 && ret == 0)
+		{
+			if (coord[i].x + 1 == coord[y].x && coord[i].y == coord[y].y)
+				ret = 1;
+			if (coord[i].x == coord[y].x && coord[i].y + 1 == coord[y].y)
+				ret = 1;
+			y++;
+		}
+		if (ret == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/03 11:16:29 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 12:48:04 by adespond         ###   ########.fr       */
 /*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -46,6 +46,7 @@ void				fillit(int *argc, char **argv);
 char				create_tris(char *str, char name);
 void				create_tris_coord(t_tris *tris, int nbr, int i);
 char				check_tris(t_tris *tris);
+char				check_tris_form(t_tris  *tris);
 t_tris				*init_tris(char name);
 #endif
 
