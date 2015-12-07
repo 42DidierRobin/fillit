@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:45:59 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/03 11:16:23 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 16:25:15 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,66 +66,34 @@ int			main()
 	// ------------
 
 	// ------------ TEST DE ft_is_start ---------- //
-	start->x = 0;
-	start->y = 0;
 	ft_putstr("doit etre 1 : ");
-	ft_putnbr(ft_is_start(grid, start));
+	ft_putnbr(ft_is_start(grid, 0, 0));
 	ft_putstr("\n");
-	start->x = 0;
-	start->y = 1;
 	ft_putstr("doit etre 0 : ");
-	ft_putnbr(ft_is_start(grid, start));
+	ft_putnbr(ft_is_start(grid, 0, 1));
 	ft_putstr("\n");
-	start->x = 3;
-	start->y = 0;
 	ft_putstr("doit etre 1 : ");
-	ft_putnbr(ft_is_start(grid, start));
+	ft_putnbr(ft_is_start(grid, 2, 0));
 	ft_putstr("\n");
-	start->x = 4;
-	start->y = 1;
 	ft_putstr("doit etre 0 : ");
-	ft_putnbr(ft_is_start(grid, start));
+	ft_putnbr(ft_is_start(grid, 2, 1));
 	ft_putstr("\n");
-	start->x = 3;
-	start->y = 2;
 	ft_putstr("doit etre 1 : ");
-	ft_putnbr(ft_is_start(grid, start));
+	ft_putnbr(ft_is_start(grid, 3, 2));
 	ft_putstr("\n");
-	start->x = 3;
-	start->y = 3;
 	ft_putstr("doit etre 0 : ");
-	ft_putnbr(ft_is_start(grid, start));
+	ft_putnbr(ft_is_start(grid, 3, 3));
 	ft_putstr("\n");
 
 	// ------------ TEST DE ft_give_starts ---------- //
-	t_point **list;
-	t_point	*yolo;
+	t_point *list;
+
 	int i;
 
 	i = 0;
 	list = ft_give_starts(grid);
-	ft_putstr("ft_give_starts sest executee\n");
-	yolo = *list;
-	while (yolo->next)
-	{
-		ft_putstr("Point numero ");
-		ft_putnbr(i);
-		ft_putstr(" : (");
-		ft_putnbr(yolo->x);
-		ft_putstr(";");
-		ft_putnbr(yolo->y);
-		ft_putstr(")\n");
-		yolo = yolo->next;
-		i++;
-	}
-	ft_putstr("Point numero ");
-	ft_putnbr(i);
-	ft_putstr(" : (");
-	ft_putnbr(yolo->x);
-	ft_putstr(";");
-	ft_putnbr(yolo->y);
-	ft_putstr(")\n");
-	yolo = yolo->next;
+	ft_putstr("ft_give_starts sest executee sans soucis\n");
+	ft_print_list(list);
 
 	return (0);
 }

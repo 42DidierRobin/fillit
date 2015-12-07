@@ -6,17 +6,17 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:43:48 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/02 16:50:25 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/03 15:44:08 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-char 		**ft_new_grid(int len)
+char 		**ft_new_grid(short len)
 {
-	int			i;
-	int			j;
+	short			i;
+	short			j;
 	char		**result;
 
 	i = 0;
@@ -55,11 +55,11 @@ void		ft_print_grid(char **tab)
 	}
 }
 
-int			ft_find_len(char **grid)
+short		ft_find_len(char **grid)
 {
-	int i;
-	int j;
-	int max;
+	short i;
+	short j;
+	short max;
 
 	i = 0;
 	max = 0;
@@ -81,10 +81,10 @@ int			ft_find_len(char **grid)
 }
 
 // !!!!! cette fonction segfault quand lenvie lui en prend.
-char		**ft_copy_grid(char **grid, int len)
+char		**ft_copy_grid(char **grid, short len)
 {
-	int		i;
-	int		j;
+	short		i;
+	short		j;
 	char	**result;
 
 	i = 0;
