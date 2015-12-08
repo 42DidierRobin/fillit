@@ -6,8 +6,12 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2015/12/08 17:01:51 by rdidier          ###   ########.fr       */
 /*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
+=======
+/*   Updated: 2015/12/08 16:19:32 by adespond         ###   ########.fr       */
+>>>>>>> 0a5867689ee376f4fb8b2d8dfe6c698acbce5305
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +44,17 @@ typedef struct		s_conf
 	struct s_tris	list_tris[26];
 }					t_conf;
 
-char				open_file(char *file);
-char				read_file(int *fd);
+t_conf				*open_file(char *file, t_conf *conf);
+t_conf				*read_file(int *fd, t_conf *conf);
 void				fillit(int *argc, char **argv);
-char				create_tris(char *str, char name);
+t_tris				*create_tris(char *str, char name);
 void				create_tris_coord(t_tris *tris, int nbr, int i);
-char				check_tris(t_tris *tris);
+t_tris				*check_tris(t_tris *tris);
+char				check_tris_form(t_tris  *tris);
 t_tris				*init_tris(char name);
-
+t_tris				*order_tris(t_tris *tris);
+t_conf				*init_conf();
+void				testmescouilles(t_conf *conf);
 //imprime une grille.
 void		ft_print_grid(char **tab);
 
