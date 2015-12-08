@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:43:48 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/03 15:44:08 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/08 15:26:22 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ char 		**ft_new_grid(short len)
 	len = len + 1;
 	result = (char**)malloc(sizeof(char*) * len);
 	if (!result)
-		ft_putstr("pas de malloc 1");
+		ft_putstr("malloc error in new_grid(1)");
 	result[len] = NULL;
 	while (len - i)
 	{
 		result[i] = (char*)malloc(sizeof(char) * len);
 		if (!result[i])
-			ft_putstr("pas de malloc 2");
+			ft_putstr("malloc error in new_grid(2)");
 		j = 0;
 		while(len - j)
 		{
@@ -88,7 +88,8 @@ char		**ft_copy_grid(char **grid, short len)
 	char	**result;
 
 	i = 0;
-	result = ft_new_grid(len);
+	//Wtf ce +1 debug mais on veut pas savoir pourquoi.
+	result = ft_new_grid(len + 1);
 	while (len - i)
 	{
 		j = 0;

@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:45:59 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/03 16:25:15 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/08 17:02:01 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,19 @@ int			main()
 	piece2->coord[3].y = 1;
 
 	grid = ft_new_grid(40);
-	if (!ft_put_piece(grid, start, piece))
-		ft_putstr("piece 1 : Probleme\n");
-	if (!ft_put_piece(grid, start, piece2))
-		ft_putstr("piece 2 :Probleme\n");
+	grid = ft_put_piece(grid, start, piece);
+	if (ft_is_putable(grid, start, piece2))
+		grid = ft_put_piece(grid, start, piece2);
 	ft_print_grid(grid);
 
 	// ----------- TEST DE copy grid  Ce code segfault, probleme non resolu
-	//ft_putstr("Carre trouve :\n");
+	ft_putstr("Carre trouve :\n");
 
-	//int	max;
-	//max = ft_find_len(grid);
-	//char	**full_grid;
-	//full_grid = ft_copy_grid(grid, max);
-	//ft_print_grid(full_grid);
+	int	max;
+	max = ft_find_len(grid);
+	char	**full_grid;
+	full_grid = ft_copy_grid(grid, max);
+	ft_print_grid(full_grid);
 	// ------------
 
 	// ------------ TEST DE ft_is_start ---------- //
