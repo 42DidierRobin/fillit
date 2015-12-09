@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/09 11:10:09 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/08 17:01:51 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_tris				*init_tris(char name);
 t_tris				*order_tris(t_tris *tris);
 t_conf				*init_conf();
 void				testmescouilles(t_conf *conf);
+void				swap_tris(t_conf *conf, int a, int b);
+void				permute_tris(t_conf *conf, int index);
 
 void		ft_print_grid(char **tab);
 char		**ft_new_grid(short nb_piece);
