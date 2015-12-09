@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/08 16:19:32 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/09 11:10:28 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_tris				*init_tris(char name);
 t_tris				*order_tris(t_tris *tris);
 t_conf				*init_conf();
 void				testmescouilles(t_conf *conf);
+void				swap_tris(t_conf *conf, int a, int b);
+void				permute_tris(t_conf *conf, int index);
 //imprime une grille.
 void		ft_print_grid(char **tab);
 
