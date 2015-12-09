@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 11:47:01 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/09 11:10:28 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/08 17:01:51 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		ft_print_grid(char **tab);
 char		**ft_new_grid(short nb_piece);
 
 //place une piece a start dans la grille si possible
-short		ft_put_piece(char **grid, t_point *start, t_tris *piece);
+void		ft_put_piece(char **grid, t_point *start, t_tris *piece);
 
 //Verifi que piece peut etre place dans grille a start
 short		ft_is_putable(char **grid, t_point *start, t_tris *piece);
