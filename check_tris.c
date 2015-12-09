@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:48:16 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/08 16:42:44 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:29:56 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,22 @@ char	check_tris_form(t_tris *tris)
 }
 
 //cette fonction permet de mettre le point le plus en haut a gauche en possition 0,0
-t_tris	*order_tris(t_tris *tris)
+t_tris		*order_tris(t_tris *tris)
+{
+	t_point		*coord;
+	int			i;
+
+	coord = tris->coord;
+	i = -1;
+	while (++i < 4)
+	{
+		coord[i].x = coord[i].x - coord[0].x;
+		coord[i].y = coord[i].y - coord[0].y;
+	}
+	return (tris);
+}
+
+/*t_tris	*order_tris(t_tris *tris)
 {
 	t_point	*coord;
 	int		i;
@@ -88,5 +103,5 @@ t_tris	*order_tris(t_tris *tris)
 		coord[i].y = coord[i].y - miny;
 	}
 	return (tris);
-}
+}*/
 
