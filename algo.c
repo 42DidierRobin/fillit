@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:29:16 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/09 14:38:45 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/09 15:07:06 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ short			ft_is_putable(char **grid, t_point *start, t_tris *piece)
 	//je verifi les 4 cases
 	while (4 - l)
 	{
-		if ((start->y + piece->coord[l].y >= 0)
-			|| (start->x + piece->coord[l].x >= 0)
-			|| (grid[start->y + (piece->coord[l]).y]
+		if (((start->y + piece->coord[l].y >= 0)
+			|| (start->x + piece->coord[l].x >= 0))
+			&& (grid[start->y + (piece->coord[l]).y]
 				[start->x + (piece->coord[l]).x] != '.'))
 			return (0);
 		l++;
@@ -112,14 +112,7 @@ void		ft_fill_this_shit(char **grid, t_conf *config, short iter, t_point *starts
 		//On a trouve plus petit on change le la grille de conf
 		if (ft_find_len(grid) <= config->min_size)
 		{
-			if (config->min_size == 4)
-			{
-				ft_putnbr(config->min_size);
-				ft_putchar('\n');
-			}
 			//liberer lancienne grille a faire !!!!
-			//ft_print_grid(grid);
-			//ft_putchar('\n');
 			config->min_size = ft_find_len(grid);
 			config->grid = ft_copy_grid(grid, config->min_size);
 		}
@@ -132,7 +125,8 @@ void		ft_fill_this_shit(char **grid, t_conf *config, short iter, t_point *starts
 	if (ft_is_putable(grid, starts, &config->list_tris[iter]))
 	{
 		ft_put_piece(grid, starts, &config->list_tris[iter]);
-		ft_fill_this_shit(grid, config, iter + 1, ft_give_starts(grid));
+		if (ft_find_len(grid) <= config->min_size)
+			ft_fill_this_shit(grid, config, iter + 1, ft_give_starts(grid));
 	}
 	ft_clean_grid(grid, config->list_tris[iter].name);
 }
