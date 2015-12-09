@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Updated: 2015/12/08 17:01:51 by rdidier          ###   ########.fr       */
-/*   Updated: 2015/12/02 17:33:18 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/09 13:28:31 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ t_conf				*init_conf();
 void				testmescouilles(t_conf *conf);
 void				swap_tris(t_conf *conf, int a, int b);
 void				permute_tris(t_conf *conf, int index);
-
+void				reverse_tris(t_conf *conf);
 void		ft_print_grid(char **tab);
 char		**ft_new_grid(short nb_piece);
+void		ft_del_grid(char ***grid);
+void		ft_clean_grid(char **grid, char letter);
 void		ft_put_piece(char **grid, t_point *start, t_tris *piece);
 short		ft_is_putable(char **grid, t_point *start, t_tris *piece);
 short		ft_find_len(char **grid);
