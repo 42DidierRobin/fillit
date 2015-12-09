@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:29:16 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/08 17:01:48 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/09 11:44:55 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_point		*ft_give_starts(char **grid)
 
 	starts = ft_new_element(-1,-1);
 	max = ft_find_len(grid) + 1;
-	ft_putnbr(max);
 	i = 0;
 	while (max - i)
 	{
@@ -102,47 +101,42 @@ void		ft_put_piece(char **grid, t_point *start, t_tris *piece)
 	}
 }
 
-
 //Pour linstant on prend les pieces dans lordre, on verra ensuite;
-void		ft_fill_this_shit(char **grid, t_conf *config, short iter, t_point *starts, int min)
+void		ft_fill_this_shit(char **grid, t_conf *config, short iter, t_point *starts)
 {
 	//cas de sortie
-	if (iter == (config->nbr_piece - 1))
+	if (iter == (config->nbr_piece))
 	{
 		//On a trouve plus petit on change le la grille de conf
-		if (ft_find_len(grid) < min)
+		if (ft_find_len(grid) <= config->min_size)
 		{
 			//liberer lancienne grille a faire !!!!
-			config->grid = ft_copy_grid(grid, ft_find_len(grid));
+			config->min_size = ft_find_len(grid);
+			config->grid = ft_copy_grid(grid, config->min_size);
 		}
 		return ;
 	}
 	// si on a encore un point de demarage possible
 	if (starts->next)
-		ft_fill_this_shit(grid, starts->next, config->list_tris[iter]);
-	if (ft_is_putable(grid, starts, config->list_trist[iter]))
+		ft_fill_this_shit(ft_copy_grid_full(grid), config, iter, starts->next);
+	if (ft_is_putable(grid, starts, &config->list_tris[iter]))
 	{
-		ft_put_piece(grid, starts, config->list_trist[iter]);
-		ft_fill_this_shit(grid, config, iter + 1, ft_give_starts(grid));
+		ft_put_piece(grid, starts, &config->list_tris[iter]);
+		ft_fill_this_shit(ft_copy_grid_full(grid), config, iter + 1, ft_give_starts(grid));
 	}
 }
 
 // Retourne la taille de plus petit carre constructible grace au pieces de t_conf
-short		ft_fillit(t_conf *config)
+void		ft_fillit(t_conf *config)
 {
 	char	**grid;
 	t_point	*begin;
 
-	begin->x = 0;
-	begin->y = 0;
-	begin->next = NULL;
+	begin = ft_new_element(0,0);
+	config->min_size = config->nbr_piece * 4;
 
 	// On creer la grille max, on pourra chercher a la diminuer plus tard
 	grid = ft_new_grid(config->nbr_piece * 4);
-	ft_fill_this_shit(grid, config, 0, begin, 16);
-	return (ft_find_len(config->grid));
+	ft_fill_this_shit(grid, config, 0, begin);
 }
-
-
-
 

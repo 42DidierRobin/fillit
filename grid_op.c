@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:43:48 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/08 15:26:22 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/09 11:44:08 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,18 @@ char 		**ft_new_grid(short len)
 void		ft_print_grid(char **tab)
 {
 	int		i;
+	int		j;
 
 	i = 0;
 	while(tab[i])
 	{
-		ft_putstr(tab[i]);
+		j = 0;
+		while (tab[i][j])
+		{
+			ft_putchar(tab[i][j]);
+			ft_putchar(' ');
+			j++;
+		}
 		ft_putchar('\n');
 		i++;
 	}
@@ -66,21 +73,47 @@ short		ft_find_len(char **grid)
 	while(grid[i])
 	{
 		j = 0;
-		if (grid[i][j] != '.' && i > max)
-			max = i;
 		while (grid[i][j])
 		{
-			if (grid[i][j] != '.' && (j > max))
-				max = j;
+			if (grid[i][j] != '.' && ((j > max) || (i > max)) )
+				max = (i < j)? j: i;
 			j++;
 		}
 		i++;
 	}
+
 	// on rajoute 1, car la grille commence a zer et on veut la taille
 	return (max + 1);
 }
 
-// !!!!! cette fonction segfault quand lenvie lui en prend.
+//copy une grille en entiere.
+char		**ft_copy_grid_full(char **grid)
+{
+	short		i;
+	short		j;
+	short		len;
+	char	**result;
+
+	i = 0;
+	len = ft_strlen(grid[0]);
+	result = ft_new_grid(len + 1);
+	while (len - i)
+	{
+		j = 0;
+		while (len - j)
+		{
+			if (grid[i][j] != '.')
+				result[i][j] = grid[i][j];
+			j++;
+		}
+		result[i][j] = '\0';
+		i++;
+	}
+	result[i] = NULL;
+	return (result);
+}
+
+//copy une grille de la taille precise.
 char		**ft_copy_grid(char **grid, short len)
 {
 	short		i;
@@ -88,7 +121,6 @@ char		**ft_copy_grid(char **grid, short len)
 	char	**result;
 
 	i = 0;
-	//Wtf ce +1 debug mais on veut pas savoir pourquoi.
 	result = ft_new_grid(len + 1);
 	while (len - i)
 	{
