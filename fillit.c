@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:51:02 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/09 15:06:04 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/10 09:48:10 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	fillit(int *argc, char **argv)
 	{
 		if ((conf = open_file(argv[1], conf)) != NULL)
 		{
-			testmescouilles(conf);
-			reverse_tris(conf);
-			testmescouilles(conf);
-			conf->min_size = 4 * conf->nbr_piece;
+			//testmescouilles(conf);
+			//reverse_tris(conf);
+			//testmescouilles(conf);
+			conf->grid = ft_new_grid(conf->nbr_piece * 4);
+			conf->min_size = conf->nbr_piece * 4;
 			permute_tris(conf, 0);
 			//ft_fillit(conf);
 			ft_print_grid(conf->grid);

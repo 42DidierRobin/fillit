@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:29:16 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/09 15:07:06 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/10 09:50:04 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,25 +110,45 @@ void		ft_fill_this_shit(char **grid, t_conf *config, short iter, t_point *starts
 	if (iter == (config->nbr_piece))
 	{
 		//On a trouve plus petit on change le la grille de conf
-		if (ft_find_len(grid) <= config->min_size)
+		if (ft_find_len(grid) < config->min_size)
 		{
 			//liberer lancienne grille a faire !!!!
 			config->min_size = ft_find_len(grid);
 			config->grid = ft_copy_grid(grid, config->min_size);
 		}
-		ft_clean_grid(grid, config->list_tris[iter].name);
+		//ft_clean_grid(grid, config->list_tris[iter].name);
 		return ;
 	}
 	// si on a encore un point de demarage possible
-	if (starts->next)
-		ft_fill_this_shit(grid, config, iter, starts->next);
 	if (ft_is_putable(grid, starts, &config->list_tris[iter]))
 	{
 		ft_put_piece(grid, starts, &config->list_tris[iter]);
-		if (ft_find_len(grid) <= config->min_size)
+		if (ft_find_len(grid) < config->min_size)
 			ft_fill_this_shit(grid, config, iter + 1, ft_give_starts(grid));
 	}
 	ft_clean_grid(grid, config->list_tris[iter].name);
+	if (starts->next)
+		ft_fill_this_shit(grid, config, iter, starts->next);
+}
+
+char	ft_grid_full(char **tab)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] == '.')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 // Retourne la taille de plus petit carre constructible grace au pieces de t_conf
@@ -140,7 +160,10 @@ void		ft_fillit(t_conf *config)
 	begin = ft_new_element(0,0);
 	//if (config-->min_size == -1)
 	//		config->min_size = config->nbr_piece * 4;
-
+	
+	//Si la grille est pleine, on peu pas faire mieux
+	if (ft_grid_full(config->grid))
+		return ;
 	// On creer la grille max, on pourra chercher a la diminuer plus tard
 	grid = ft_new_grid(config->nbr_piece * 4);
 	ft_fill_this_shit(grid, config, 0, begin);
