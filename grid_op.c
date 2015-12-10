@@ -6,12 +6,45 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:43:48 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/09 11:44:08 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/09 13:50:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
+
+void		ft_del_grid(char ***grid)
+{
+	int i;
+
+	i = 0;
+	while ((**grid)[i])
+	{
+		free((*grid)[i]);
+		i++;
+	}
+	free(*grid);
+
+}
+
+void		ft_clean_grid(char **grid, char letter)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (grid[i])
+	{
+		j = 0;
+		while (grid[i][j])
+		{
+			if (grid[i][j] == letter)
+				grid[i][j] = '.';
+			j++;
+		}
+		i++;
+	}
+}
 
 char 		**ft_new_grid(short len)
 {

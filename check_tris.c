@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:48:16 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/09 14:29:56 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:51:36 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,17 @@ t_tris		*order_tris(t_tris *tris)
 {
 	t_point		*coord;
 	int			i;
+	int			x;
+	int			y;
 
 	coord = tris->coord;
 	i = -1;
+	x = coord[0].x;
+	y = coord[0].y;
 	while (++i < 4)
 	{
-		coord[i].x = coord[i].x - coord[0].x;
-		coord[i].y = coord[i].y - coord[0].y;
+		coord[i].x = coord[i].x - x;
+		coord[i].y = coord[i].y - y;
 	}
 	return (tris);
 }

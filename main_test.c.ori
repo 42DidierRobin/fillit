@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:45:59 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/09 11:44:39 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/09 14:34:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,38 @@ int			main()
 	start->next = NULL;
 	piece = (t_tris*)malloc(sizeof(t_tris));
 	piece->name = 'A';
-	piece->coord[0].x = 1;
+	piece->coord[0].x = 0;
 	piece->coord[0].y = 0;
-	piece->coord[1].x = 0;
-	piece->coord[1].y = 1;
-	piece->coord[2].x = 1;
+	piece->coord[1].x = 1;
+	piece->coord[1].y = 0;
+	piece->coord[2].x = 0;
 	piece->coord[2].y = 1;
-	piece->coord[3].x = 2;
+	piece->coord[3].x = 1;
 	piece->coord[3].y = 1;
 
 	piece2 = (t_tris*)malloc(sizeof(t_tris));
 	piece2->name = 'B';
 	piece2->coord[0].x = 0;
 	piece2->coord[0].y = 0;
-	piece2->coord[1].x = 1;
-	piece2->coord[1].y = 0;
-	piece2->coord[2].x = 1;
-	piece2->coord[2].y = 1;
-	piece2->coord[3].x = 2;
-	piece2->coord[3].y = 1;
+	piece2->coord[1].x = 0;
+	piece2->coord[1].y = 1;
+	piece2->coord[2].x = 0;
+	piece2->coord[2].y = 2;
+	piece2->coord[3].x = -1;
+	piece2->coord[3].y = 2;
 
-	grid = ft_new_grid(40);
+	grid = ft_new_grid(10);
 	ft_put_piece(grid, start, piece);
+	start->x = 0;
+	start->y = 2;
 	if (ft_is_putable(grid, start, piece2))
+	{
+		ft_putchar('o');
 		ft_put_piece(grid, start, piece2);
+	}
 	ft_print_grid(grid);
 
+/*
 	// --------- TEST de find_len ------//
 	char	**gridtest;
 	gridtest = ft_new_grid(6);
@@ -64,7 +70,7 @@ int			main()
 
 	ft_print_grid(gridtest);
 	ft_putnbr(ft_find_len(gridtest));
-
+*/
 	
 	// ----------- TEST DE copy grid 
 	ft_putstr("Carre trouve :\n");
@@ -106,7 +112,7 @@ int			main()
 	ft_print_list(list);
 
 	// ------------ TEST DE LALGO (sans permutations) MOTHERFUCKER ------- //
-	
+/*	
 	t_conf	*config;
 
 	config = (t_conf*)malloc(sizeof(t_conf));
@@ -124,6 +130,6 @@ int			main()
 	ft_print_grid(config->grid);
 	ft_putstr("Taille du carre trouve : \n");
 	ft_putnbr(config->min_size);
-	
+*/	
 	return (0);
 }

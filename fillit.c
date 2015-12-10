@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:51:02 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/09 11:19:47 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/09 15:06:04 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	fillit(int *argc, char **argv)
 		if ((conf = open_file(argv[1], conf)) != NULL)
 		{
 			testmescouilles(conf);
+			reverse_tris(conf);
+			testmescouilles(conf);
+			conf->min_size = 4 * conf->nbr_piece;
 			permute_tris(conf, 0);
+			//ft_fillit(conf);
 			ft_print_grid(conf->grid);
 			return ;
 		}
@@ -57,5 +61,5 @@ void	testmescouilles(t_conf *conf)
 			ft_putstr(")");
 		}
 	}
-	ft_putstr("\n--------------------------");
+	ft_putstr("\n--------------------------\n\n");
 }
