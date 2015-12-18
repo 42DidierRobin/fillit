@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:45:59 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/09 14:43:02 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/18 11:23:49 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int			main()
 
 	t_tris	*piece;
 	t_tris	*piece2;
+	t_tris	*piece3;
 	t_point	*start;
 
 	start = (t_point*)malloc(sizeof(t_point));
@@ -28,35 +29,47 @@ int			main()
 	start->next = NULL;
 	piece = (t_tris*)malloc(sizeof(t_tris));
 	piece->name = 'A';
+	
 	piece->coord[0].x = 0;
 	piece->coord[0].y = 0;
-	piece->coord[1].x = 1;
-	piece->coord[1].y = 0;
+	piece->coord[1].x = 0;
+	piece->coord[1].y = 1;
 	piece->coord[2].x = 0;
-	piece->coord[2].y = 1;
-	piece->coord[3].x = 1;
-	piece->coord[3].y = 1;
+	piece->coord[2].y = 2;
+	piece->coord[3].x = 0;
+	piece->coord[3].y = 3;
 
 	piece2 = (t_tris*)malloc(sizeof(t_tris));
 	piece2->name = 'B';
 	piece2->coord[0].x = 0;
 	piece2->coord[0].y = 0;
-	piece2->coord[1].x = 0;
-	piece2->coord[1].y = 1;
-	piece2->coord[2].x = 0;
-	piece2->coord[2].y = 2;
-	piece2->coord[3].x = 1;
-	piece2->coord[3].y = 2;
+	piece2->coord[1].x = 1;
+	piece2->coord[1].y = 0;
+	piece2->coord[2].x = 2;
+	piece2->coord[2].y = 0;
+	piece2->coord[3].x = 3;
+	piece2->coord[3].y = 0;
 
+	piece3 = (t_tris*)malloc(sizeof(t_tris));
+	piece3->name = 'C';
+	piece3->coord[0].x = 0;
+	piece3->coord[0].y = 0;
+	piece3->coord[1].x = 1;
+	piece3->coord[1].y = 0;
+	piece3->coord[2].x = 2;
+	piece3->coord[2].y = 0;
+	piece3->coord[3].x = 2;
+	piece3->coord[3].y = 1;
+	
 	grid = ft_new_grid(10);
 	ft_put_piece(grid, start, piece);
-	start->x = 0;
-	start->y = 2;
-	if (ft_is_putable(grid, start, piece2))
-	{
-		ft_putchar('o');
-		ft_put_piece(grid, start, piece2);
-	}
+	start->x = 1;
+	start->y = 0;
+	ft_put_piece(grid, start, piece2);
+	start->x = 3;
+	start->y = 1;
+	ft_put_piece(grid, start, piece3);
+	
 	ft_print_grid(grid);
 
 /*
@@ -73,7 +86,7 @@ int			main()
 */
 	
 	// ----------- TEST DE copy grid 
-	ft_putstr("Carre trouve :\n");
+	/*ft_putstr("Carre trouve :\n");
 
 	int	max;
 	max = ft_find_len(grid);
@@ -101,14 +114,16 @@ int			main()
 	ft_putstr("doit etre 0 : ");
 	ft_putnbr(ft_is_start(grid, 3, 3));
 	ft_putstr("\n");
-
+*/
 	// ------------ TEST DE ft_give_starts ---------- //
 	t_point *list;
 
 	int i;
 
+	start->x = 3;
+	start->y = 1;
 	i = 0;
-	list = ft_give_starts(grid);
+	list = ft_give_starts(grid, start);
 	ft_print_list(list);
 
 	// ------------ TEST DE LALGO (sans permutations) MOTHERFUCKER ------- //

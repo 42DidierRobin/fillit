@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 10:32:56 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/10 09:45:55 by adespond         ###   ########.fr       */
+/*   Updated: 2015/12/18 11:35:15 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		testSalut(t_conf *conf)
 
 	while (i < conf->nbr_piece)
 	{
-		//ft_putchar(conf->list_tris[i].name);
+		ft_putchar(conf->list_tris[i].name);
 		i++;
 	}
 		ft_putchar('\n');
@@ -46,7 +46,6 @@ void		permute_tris(t_conf *conf, int index)
 	j = index;
 	if (index == conf->nbr_piece - 1)
 	{
-		//testSalut(conf);
 		ft_fillit(conf);
 	}
 	else

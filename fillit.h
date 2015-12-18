@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Updated: 2015/12/08 17:01:51 by rdidier          ###   ########.fr       */
-/*   Updated: 2015/12/09 13:28:31 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/18 11:10:13 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ short		ft_find_len(char **grid);
 char		**ft_copy_grid(char **grid, short len);
 char		**ft_copy_grid_full(char **grid);
 int			ft_is_start(char **grid, short x, short y);
-t_point		*ft_give_starts(char **grid);
+t_point		*ft_give_starts(char **grid, t_point *p);
 t_point		*ft_new_element(short i, short j);
 void		ft_add_list(t_point *list, t_point *element);
 void		ft_print_list(t_point *lst);
