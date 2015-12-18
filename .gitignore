@@ -3,3 +3,4 @@ a.out
 .nfs.*
 *.pdf
 *._*
+.DS_Store
