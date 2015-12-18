@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 10:32:56 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/18 11:35:15 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/18 13:57:57 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		reverse_tris(t_conf *conf)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i <= (conf->nbr_piece - 1) / 2)
 	{
@@ -23,20 +23,6 @@ void		reverse_tris(t_conf *conf)
 		printf("\n\n %d, %d\n\n", i, conf->nbr_piece - i - 1);
 		i++;
 	}
-}
-
-void		testSalut(t_conf *conf)
-{
-	int i;
-
-	i = 0;
-
-	while (i < conf->nbr_piece)
-	{
-		ft_putchar(conf->list_tris[i].name);
-		i++;
-	}
-		ft_putchar('\n');
 }
 
 void		permute_tris(t_conf *conf, int index)

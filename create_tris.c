@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:48:16 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/09 11:50:21 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/18 11:52:08 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_tris	*init_tris(char name)
 	t_tris	*tris;
 	t_point	*coord;
 	int		i;
-	
+
 	i = -1;
 	tris = (t_tris*)malloc(sizeof(t_tris));
 	tris->name = name + 65;
@@ -37,10 +37,10 @@ t_tris	*create_tris(char *str, char name)
 	int		i;
 	int		nbr;
 
-	i = 0;
+	i = -1;
 	nbr = -1;
 	tris = init_tris(name);
-	while (i < 20)
+	while (++i < 20)
 	{
 		if (str[i] == '\n' && (i + 1) % 5 != 0)
 			return (NULL);
@@ -48,7 +48,7 @@ t_tris	*create_tris(char *str, char name)
 		{
 			if (str[i] == '#')
 			{
-				if(++nbr < 4)
+				if (++nbr < 4)
 					create_tris_coord(tris, nbr, i);
 				else
 					return (NULL);
@@ -56,7 +56,6 @@ t_tris	*create_tris(char *str, char name)
 		}
 		else
 			return (NULL);
-		i++;
 	}
 	return (check_tris(tris));
 }
