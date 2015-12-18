@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 14:35:56 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/08 14:04:15 by rdidier          ###   ########.fr       */
+/*   Updated: 2015/12/18 13:58:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_point		*ft_new_element(short i, short j)
 	element->next = NULL;
 	element->x = i;
 	element->y = j;
-	return(element);
+	return (element);
 }
 
 void		ft_add_list(t_point *list, t_point *element)
@@ -33,7 +33,7 @@ void		ft_add_list(t_point *list, t_point *element)
 	{
 		list2 = list2->next;
 	}
-	list2->next = element;	
+	list2->next = element;
 }
 
 void		ft_print_list(t_point *list)
@@ -43,7 +43,7 @@ void		ft_print_list(t_point *list)
 
 	lst = list;
 	i = 0;
-	while(lst->next)
+	while (lst->next)
 	{
 		ft_putstr("Element numero ");
 		ft_putnbr(i);
@@ -62,6 +62,4 @@ void		ft_print_list(t_point *list)
 	ft_putchar(';');
 	ft_putnbr(lst->y);
 	ft_putstr(")\n");
-
 }
-

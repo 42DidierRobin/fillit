@@ -6,11 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:29:16 by rdidier           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/12/14 22:50:35 by rdidier          ###   ########.fr       */
-=======
-/*   Updated: 2015/12/10 09:50:04 by adespond         ###   ########.fr       */
->>>>>>> 8343d0f9864e522fe0187e942fb336f45f8c031a
+/*   Updated: 2015/12/18 14:16:17 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +36,20 @@ int				ft_is_start(char **grid, short x, short y)
 	return (0);
 }
 
-t_point			*ft_give_starts(char **grid)
+t_point			*ft_give_starts(char **grid, t_point *p)
 {
 	t_point		*starts;
 	short		i;
 	short		j;
 	short		max;
 
-	starts = ft_new_element(-1,-1);
+	starts = ft_new_element(-1, -1);
 	max = ft_find_len(grid) + 1;
-	i = 0;
-	while (max - i)
+	i = p->y;
+	j = p->x;
+	while (i < max)
 	{
-		j = 0;
-		while (max - j)
+		while (j < max)
 		{
 			if (ft_is_start(grid, j, i))
 			{
@@ -61,6 +57,7 @@ t_point			*ft_give_starts(char **grid)
 			}
 			j++;
 		}
+		j = 0;
 		i++;
 	}
 	if (starts->next)
@@ -98,45 +95,13 @@ void			ft_put_piece(char **grid, t_point *start, t_tris *piece)
 	}
 }
 
-void			ft_fill_this_shit(char **grid, t_conf *config, short iter, t_point *starts)
-{
-	if (iter == (config->nbr_piece))
-	{
-<<<<<<< HEAD
-		if (ft_find_len(grid) <= config->min_size)
-=======
-		//On a trouve plus petit on change le la grille de conf
-		if (ft_find_len(grid) < config->min_size)
->>>>>>> 8343d0f9864e522fe0187e942fb336f45f8c031a
-		{
-			config->min_size = ft_find_len(grid);
-			config->grid = ft_copy_grid(grid, config->min_size);
-		}
-		//ft_clean_grid(grid, config->list_tris[iter].name);
-		return ;
-	}
-<<<<<<< HEAD
-	if (starts->next)
-		ft_fill_this_shit(grid, config, iter, starts->next);
-=======
-	// si on a encore un point de demarage possible
->>>>>>> 8343d0f9864e522fe0187e942fb336f45f8c031a
-	if (ft_is_putable(grid, starts, &config->list_tris[iter]))
-	{
-		ft_put_piece(grid, starts, &config->list_tris[iter]);
-		if (ft_find_len(grid) < config->min_size)
-			ft_fill_this_shit(grid, config, iter + 1, ft_give_starts(grid));
-	}
-	ft_clean_grid(grid, config->list_tris[iter].name);
-	if (starts->next)
-		ft_fill_this_shit(grid, config, iter, starts->next);
-}
-
-char	ft_grid_full(char **tab)
+char			ft_grid_isfull(char **tab)
 {
 	int		i;
 	int		j;
+	int		c;
 
+	c = 0;
 	i = 0;
 	while (tab[i])
 	{
@@ -144,30 +109,12 @@ char	ft_grid_full(char **tab)
 		while (tab[i][j])
 		{
 			if (tab[i][j] == '.')
-				return (0);
+				c++;
 			j++;
 		}
 		i++;
 	}
-	return (1);
-}
-
-void			ft_fillit(t_conf *config)
-{
-	char	**grid;
-	t_point	*begin;
-
-	begin = ft_new_element(0,0);
-<<<<<<< HEAD
-=======
-	//if (config-->min_size == -1)
-	//		config->min_size = config->nbr_piece * 4;
-	
-	//Si la grille est pleine, on peu pas faire mieux
-	if (ft_grid_full(config->grid))
-		return ;
-	// On creer la grille max, on pourra chercher a la diminuer plus tard
->>>>>>> 8343d0f9864e522fe0187e942fb336f45f8c031a
-	grid = ft_new_grid(config->nbr_piece * 4);
-	ft_fill_this_shit(grid, config, 0, begin);
+	if (c < 4)
+		return (1);
+	return (0);
 }
