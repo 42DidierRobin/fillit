@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:48:16 by adespond          #+#    #+#             */
-/*   Updated: 2015/12/18 15:28:42 by adespond         ###   ########.fr       */
+/*   Updated: 2016/01/11 06:33:15 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	create_tris_coord(t_tris *tris, int nbr, int i)
 {
 	t_point		point;
 
-	point.x = i % 5;
-	point.y = i / 5;
-	point.next = NULL;
+	point = *ft_new_point(i % 5, i / 5);
 	tris->coord[nbr] = point;
 }

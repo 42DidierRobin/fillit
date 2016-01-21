@@ -6,7 +6,7 @@
 #    By: adespond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 14:14:20 by adespond          #+#    #+#              #
-#    Updated: 2015/12/18 19:06:59 by adespond         ###   ########.fr        #
+#    Updated: 2016/01/11 06:26:35 by rdidier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,7 @@ SRC		= src/algo.c \
 		  src/fillit.c \
 		  src/grid_op.c \
 		  src/main.c \
-		  src/permute_tris.c \
-		  src/read_file.c \
-		  src/tools.c
+		  src/read_file.c 
 
 OBJ		= $(patsubst src/%.c,./%.o,$(SRC))
 
@@ -35,8 +33,6 @@ $(NAME): $(OBJ)
 	gcc -Wall -Werror -Wextra $(OBJ) -L libft/ -lft -o $(NAME)
 	printf '\033[4m'
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "fillit is done !"
-	clear
-	./fillit test
 ./%.o: src/%.c
 	gcc -Wall -Wextra -Werror -c $< -o $@
 	printf '\033[0m[ ✔ ] %s\n\033[0m' "$<"

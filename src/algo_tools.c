@@ -6,63 +6,11 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 12:29:16 by rdidier           #+#    #+#             */
-/*   Updated: 2015/12/18 17:01:40 by adespond         ###   ########.fr       */
+/*   Updated: 2016/01/11 06:44:03 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
-
-int				ft_is_start(char **grid, short x, short y)
-{
-	short		i;
-	short		j;
-
-	if (grid[y][x] != '.')
-		return (0);
-	i = -1;
-	while (i < 2)
-	{
-		j = -1;
-		while (j < 2)
-		{
-			if (((x + j) >= 0) && ((y + i) >= 0)
-					&& grid[y + i][x + j] != '.')
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-t_point			*ft_give_starts(char **grid, t_point *p)
-{
-	t_point		*starts;
-	short		i;
-	short		j;
-	short		max;
-
-	starts = ft_new_element(-1, -1);
-	max = ft_find_len(grid) + 1;
-	i = p->y;
-	j = p->x;
-	while (i < max)
-	{
-		while (j < max)
-		{
-			if (ft_is_start(grid, j, i))
-			{
-				ft_add_list(starts, ft_new_element(j, i));
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	if (starts->next)
-		return (starts->next);
-	return (NULL);
-}
 
 short			ft_is_putable(char **grid, t_point *start, t_tris *piece)
 {
@@ -71,6 +19,10 @@ short			ft_is_putable(char **grid, t_point *start, t_tris *piece)
 	l = 0;
 	while (4 - l)
 	{
+		if (!(grid[start->y + (piece->coord[l]).y])
+			|| !(grid[start->y + (piece->coord[l]).y]
+				[start->x + (piece->coord[l]).x]))
+			return (0);
 		if (((start->y + piece->coord[l].y >= 0)
 			|| (start->x + piece->coord[l].x >= 0))
 			&& (grid[start->y + (piece->coord[l]).y]
@@ -94,26 +46,39 @@ void			ft_put_piece(char **grid, t_point *start, t_tris *piece)
 	}
 }
 
-char			ft_grid_isfull(char **tab)
+t_point			*ft_new_point(int x, int y)
 {
-	int		i;
-	int		j;
-	int		c;
+	t_point		*ret;
 
-	c = 0;
-	i = 0;
-	while (tab[i])
+	ret = (t_point*)malloc(sizeof(t_point));
+	ret->x = x;
+	ret->y = y;
+	return (ret);
+}
+
+t_point			*ft_give_next_point(t_point *start, char **grid)
+{
+	t_point		*ret;
+	short		i;
+	short		j;
+
+	ret = ft_new_point(-1, -1);
+	i = start->y;
+	j = start->x + 1;
+	while (grid[i])
 	{
-		j = 0;
-		while (tab[i][j])
+		while (grid[i][j])
 		{
-			if (tab[i][j] == '.')
-				c++;
+			if (grid[i][j] == '.')
+			{
+				ret->x = j;
+				ret->y = i;
+				return (ret);
+			}
 			j++;
 		}
+		j = 0;
 		i++;
 	}
-	if (c < 4)
-		return (1);
-	return (0);
+	return (ret);
 }
