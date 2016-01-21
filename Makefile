@@ -6,7 +6,7 @@
 #    By: adespond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 14:14:20 by adespond          #+#    #+#              #
-#    Updated: 2016/01/11 06:26:35 by rdidier          ###   ########.fr        #
+#    Updated: 2016/01/21 09:10:21 by adespond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ INCLUDE	= include/fillit.h \
 .SILENT:
 
 $(NAME): $(OBJ)
+	make -C libft/
 	gcc -Wall -Werror -Wextra $(OBJ) -L libft/ -lft -o $(NAME)
 	printf '\033[4m'
 	printf '\033[32m[ ✔ ] %s\n\033[0m' "fillit is done !"
